@@ -118,7 +118,7 @@ public class AddStaffJAVA extends JFrame{
         }else{
        try{
            int PreviousID=0;      
-           JOptionPane.showMessageDialog(null, "Register Successfull");
+           JOptionPane.showMessageDialog(null, "Register Successful");
                 while(rs.next()){             
                       PreviousID=Integer.valueOf(rs.getString(1).replaceAll("S",""));         
                       
