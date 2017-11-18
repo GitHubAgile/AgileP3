@@ -13,6 +13,8 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author x.x
  */
+
+//testing
 public class TrackStatusDeliveryMan extends javax.swing.JFrame {
     Connection conn;
     Statement stmt;
@@ -23,7 +25,7 @@ public class TrackStatusDeliveryMan extends javax.swing.JFrame {
      */
     public TrackStatusDeliveryMan() {
         initComponents();
-        displayRecords();
+        showRecords();
     }
 
     /**
@@ -205,7 +207,7 @@ public class TrackStatusDeliveryMan extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BreakTimeActionPerformed
 
-    private void displayRecords(){
+    private void showRecords(){
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         try{
             //Connect to the database

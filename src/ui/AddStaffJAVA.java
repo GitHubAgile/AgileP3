@@ -43,7 +43,7 @@ public class AddStaffJAVA extends JFrame{
     private String[] Position = {"Manager","Staff","Deliveryman"};
     private JButton jbtConfirm = new JButton("Confirm");
     private ButtonGroup buttonGroup;
-    private String radioButtonString;
+    private String radioButtonString="";
      private JRadioButton[] jrbPosition = new JRadioButton[Position.length];
      
     AddStaffDA StaffDA=new AddStaffDA();
@@ -113,9 +113,12 @@ public class AddStaffJAVA extends JFrame{
         int returnVal = JOptionPane.showConfirmDialog(null,"Confirm register staff ?","Confirmation",JOptionPane.YES_NO_OPTION);
             if(returnVal == JOptionPane.YES_OPTION){
                
+                if(StaffName.equals("")||StaffPassword.equals("")||StaffPhone.equals("")||StaffEmail.equals("")||StaffPosition.equals("")){
+            JOptionPane.showMessageDialog(null, "All field should not be empty!", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }else{
        try{
            int PreviousID=0;      
-           JOptionPane.showMessageDialog(null, "Register Successfull");
+           JOptionPane.showMessageDialog(null, "Register Successful");
                 while(rs.next()){             
                       PreviousID=Integer.valueOf(rs.getString(1).replaceAll("S",""));         
                       
@@ -129,6 +132,7 @@ public class AddStaffJAVA extends JFrame{
              JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
          
              }
+            }
             }
         }
     }
