@@ -27,24 +27,24 @@ public class displayCustomerDetails extends JFrame {
     displayCustomerDetailDA displaycustomerdetailda = new displayCustomerDetailDA();
     int row = 0, column = 0;
     private JLabel jTitle = new JLabel("Customer Details");
-    String[] columnNames = {"Customer ID", "Customer Name", "Customer Address", "Customer Phone"};
+    String[] columnNames = {"Order ID", "Customer ID", "Customer Name", "Customer Address", "Customer Phone"};
     Object[][] data = {};
     DefaultTableModel listTableModel;
     JPanel jpane = new JPanel(new BorderLayout());
     JPanel jpane2 = new JPanel(new GridLayout(1, 2));
     private JButton jbtSubmit = new JButton("View");
     private JButton jbtCancel = new JButton("Close");
-
+ JFrame frame = new JFrame("Customer Details");
     public displayCustomerDetails() {
         listTableModel = new DefaultTableModel(data, columnNames);
 
-        listTableModel.addRow(new Object[]{"Customer ID", "Customer Name", "Customer Address", "Customer Phone"});
+        listTableModel.addRow(new Object[]{"Order ID", "Customer ID", "Customer Name", "Customer Address", "Customer Phone"});
 
         try {
             rs = displaycustomerdetailda.displayRecord();
 
             while (rs.next()) {
-                listTableModel.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)});
+                listTableModel.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),rs.getString(5)});
             }
 
         } catch (Exception ex) {
@@ -56,7 +56,7 @@ public class displayCustomerDetails extends JFrame {
         listTable.setCellEditor(null);
         listTable.setBounds(37, 143, 397, 183);
 
-        JFrame frame = new JFrame("Customer Details");
+       
         jpane.add(listTable);
         jpane2.add(jbtSubmit);
         jpane2.add(jbtCancel);
@@ -78,7 +78,8 @@ public class displayCustomerDetails extends JFrame {
     private class cancelActionListener implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
-            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.dispose();
+            
         }
     }
 
@@ -92,11 +93,11 @@ public class displayCustomerDetails extends JFrame {
             if(row == -1){
                 JOptionPane.showMessageDialog(null, "Please select a field first!");
             }else{
-            String value = listTable.getModel().getValueAt(row, 0).toString();
+            String value = listTable.getModel().getValueAt(row, 1).toString();
             try {
                 rs = displaycustomerdetailda.displayChoosenRecord(value);
                 if(rs.next()){
-                Details = "Customer ID : " + rs.getString(1) + "\nCustomer Name : " + rs.getString(2) + "\nCustomer Address : " + rs.getString(3) + "\nCustomer Phone :" + rs.getString(4);
+                Details = "Order ID : " +rs.getString(1) +  "\nCustomer ID : " + rs.getString(2) + "\nCustomer Name : " + rs.getString(3) + "\nCustomer Address : " + rs.getString(4) + "\nCustomer Phone :" + rs.getString(5);
           JOptionPane.showMessageDialog(null, Details, "Customer Details", JOptionPane.INFORMATION_MESSAGE);
                 }
                 } catch (Exception ex) {

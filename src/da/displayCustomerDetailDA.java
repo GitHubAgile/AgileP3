@@ -35,7 +35,9 @@ public class displayCustomerDetailDA {
         }
     }
 public ResultSet displayRecord() {
-        String queryStr = "SELECT CustID, CustName, CUATAddress, CustPhone FROM CUSTOMER";
+        String queryStr = "SELECT NBUSER.\"ORDER\".OrderID, NBUSER.\"ORDER\".CUSTID, Customer.CUSTNAME, CUSTOMER.CUATADDRESS,  CUSTOMER.CUSTPHONE\n" +
+"FROM NBUSER.\"ORDER\" ,CUSTOMER\n" +
+"WHERE NBUSER.\"ORDER\".CUSTID = CUSTOMER.CUSTID  \n";
         ResultSet rs = null;
         try {
             stmt = conn.prepareStatement(queryStr);
@@ -48,7 +50,7 @@ public ResultSet displayRecord() {
        
     }
 public ResultSet displayChoosenRecord(String custID) {
-        String queryStr = "SELECT CustID, CustName, CUATAddress, CustPhone FROM CUSTOMER WHERE CUSTID = ?";
+        String queryStr = "SELECT NBUSER.\"ORDER\".OrderID , Customer.CustID, CustName, CUATAddress, CustPhone FROM NBUSER.\"ORDER\", CUSTOMER WHERE Customer.CUSTID = ?";
         ResultSet rs = null;
         try {
             stmt = conn.prepareStatement(queryStr);
