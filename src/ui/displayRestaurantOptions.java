@@ -5,6 +5,17 @@
  */
 package ui;
 
+import da.registerAffiliatesDA;
+import domain.registerAffiliates;
+import domain.restaurant;
+import java.awt.Image;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.TheModel;
+
 /**
  *
  * @author AaronLee
@@ -15,7 +26,39 @@ public class displayRestaurantOptions extends javax.swing.JFrame {
      * Creates new form displayRestaurantOptions
      */
     public displayRestaurantOptions() {
+
         initComponents();
+        populateJTable();
+
+    }
+
+    public void populateJTable() {
+        registerAffiliatesDA ra = new registerAffiliatesDA();
+        ArrayList<restaurant> list = ra.BindTable();
+        String[] columnName = {"Restaurant ID", "Restaurant Name", "Restaurant Type", "Contact Number", "Image"};
+        Object[][] rows = new Object[list.size()][6];
+        for (int i = 0; i < list.size(); i++) {
+            rows[i][0] = list.get(i).getRestaurantID();
+            rows[i][1] = list.get(i).getCompanyName();
+            rows[i][2] = list.get(i).getRestaurantType();
+            rows[i][3] = list.get(i).getContactNo();
+
+            if (list.get(i).getImage() != null) {
+
+                ImageIcon image = new ImageIcon(new ImageIcon(list.get(i).getImage()).getImage()
+                        .getScaledInstance(150, 120, Image.SCALE_SMOOTH));
+
+                rows[i][4] = image;
+            } else {
+                rows[i][4] = null;
+            }
+
+        }
+        TheModel model = new TheModel(rows, columnName);
+
+        jTable1.setModel(model);
+        jTable1.setRowHeight(120);
+        jTable1.getColumnModel().getColumn(4).setPreferredWidth(150);
     }
 
     /**
@@ -31,6 +74,7 @@ public class displayRestaurantOptions extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Restaurant");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -43,29 +87,34 @@ public class displayRestaurantOptions extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        jTable1.setRowHeight(100);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 782, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 792, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        JOptionPane.showMessageDialog(null, "You Have Clicked " + jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
