@@ -33,6 +33,7 @@ public class CreateFood extends javax.swing.JFrame {
         CreateFoodDA cfda = new CreateFoodDA();
         ResultSet rs = cfda.generateFoodID("1001");
         int newfoodid = 1001;
+        boolean gan = true;
         try{
         while(rs.next()){
             newfoodid++;
