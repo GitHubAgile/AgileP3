@@ -138,9 +138,6 @@ public class DailyRecordDA {
         }
      }
      
-    public static void main(String args[]){
-        
-    }
-    
+   
     
 }
