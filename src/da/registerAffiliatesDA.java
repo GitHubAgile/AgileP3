@@ -25,7 +25,7 @@ import javax.swing.JOptionPane;
  */
 public class registerAffiliatesDA {
 
-    private String host = "jdbc:derby://localhost:1527/RESTAURANTDB";
+    private String host = "jdbc:derby://localhost:1527/Agile";
     private String user = "nbuser";
     private String password = "nbuser";
     private String tableName = "RESTAURANT";
