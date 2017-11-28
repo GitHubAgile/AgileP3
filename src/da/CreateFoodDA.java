@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DA;
+package da;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -25,7 +25,6 @@ public class CreateFoodDA {
     private String tableName = "MENU";
     private Connection conn;
     private PreparedStatement stmt;
-    private String sqlQueryStr = "SELECT * from " + tableName;
     
     public CreateFoodDA() {
         createConnection();
