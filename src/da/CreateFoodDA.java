@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  * @author BryanLee
  */
 public class CreateFoodDA {
-    private String host = "jdbc:derby://localhost:1527/RESTAURANTDB";
+    private String host = "jdbc:derby://localhost:1527/Agile";
     private String user = "nbuser";
     private String password = "nbuser";
     private String tableName = "MENU";
