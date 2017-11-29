@@ -37,11 +37,11 @@
                       <Component id="jbtBack" min="-2" pref="136" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="18" max="32767" attributes="0"/>
+              <EmptySpace pref="23" max="32767" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="496" max="32767" attributes="0"/>
+                  <EmptySpace pref="501" max="32767" attributes="0"/>
                   <Component id="jbtComplete" min="-2" pref="136" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
@@ -58,7 +58,7 @@
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace type="unrelated" pref="166" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" pref="212" max="32767" attributes="0"/>
                       <Component id="jbtBack" min="-2" pref="109" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                   </Group>
@@ -73,7 +73,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
                   <Component id="jbtComplete" min="-2" pref="98" max="-2" attributes="0"/>
-                  <EmptySpace pref="237" max="32767" attributes="0"/>
+                  <EmptySpace pref="283" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
