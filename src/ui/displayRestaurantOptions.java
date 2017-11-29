@@ -33,7 +33,15 @@ public class displayRestaurantOptions extends javax.swing.JFrame {
     }
 
     public void populateJTable() {
+        ResultSet rs = null;
         registerAffiliatesDA ra = new registerAffiliatesDA();
+       try{
+           rs = ra.displayRestaurant();
+       if(!rs.next()){
+       JOptionPane.showMessageDialog(null, "No records available!");
+       }
+           
+       }catch(Exception ex){}
         ArrayList<restaurant> list = ra.BindTable();
         String[] columnName = {"Restaurant ID", "Restaurant Name", "Restaurant Type", "Contact Number", "Image"};
         Object[][] rows = new Object[list.size()][6];

@@ -101,11 +101,12 @@ public class registerAffiliatesDA {
         restaurant ro;
         try {
            rs = displayRestaurant();
-
+           
             while (rs.next()) {
                 ro = new restaurant(rs.getString(1), rs.getString("RESTNAME"), rs.getString("RESTTYPE"), rs.getBytes("IMAGE"), rs.getString("RESTPHONE"));
                 list.add(ro);
             }
+            
         } catch (Exception ex) {
             ex.getMessage();
         }
