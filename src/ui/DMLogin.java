@@ -139,8 +139,6 @@ public class DMLogin extends javax.swing.JFrame {
         try{
         staff = staffDA.getRecord(id, password);
         if (staff != null){
-        JOptionPane.showMessageDialog(null, "Login successfully.");
-        
         //get current date & time
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         DateFormat tf = new SimpleDateFormat("HH:mm:ss");
@@ -148,18 +146,17 @@ public class DMLogin extends javax.swing.JFrame {
         
         DailyRecordDA dRDA = new DailyRecordDA();
         //auto generate id
-       // String record = dRDA.getLastID();
-         // JOptionPane.showMessageDialog(null, record);
-         //int recordId = Integer.parseInt(record.indexOf(1, 9) + "");
-        // System.out.println(recordId);
-       // int no = Integer.parseInt(recordId.indexOf(1,10) +  "");
+        String record = dRDA.getLastID();
+        String test = record.substring(1,10);
+        int recordId = Integer.parseInt(test + "");
+        //int recordId = 0;
+          DailyRecord dR = new DailyRecord("R" + String.format("%09d", ++recordId), df.format(dateobj),tf.format(dateobj), "0", 0.0, 0, id);
+ 
         
-        //recordId = "R" + (no++);
-          DailyRecord dR = new DailyRecord("R" + String.format("%09d", recordId++), df.format(dateobj),tf.format(dateobj), "0", 0.0, 0, id);
-         
         
         try{
             dRDA.searchRecord(dR);
+            JOptionPane.showMessageDialog(null, "Login successfully.");
             JOptionPane.showMessageDialog(null, "Welcome, " + staff.getStaffName() + "\nSystem time: " + tf.format(dateobj));
             new DMLogin().setVisible(false);
               new DMLogin().setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
@@ -183,7 +180,7 @@ public class DMLogin extends javax.swing.JFrame {
         }
         }
         catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "Invalid ID or password. Please try again.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jbtLoginActionPerformed
 

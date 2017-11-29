@@ -57,7 +57,13 @@ class Logout extends JFrame{
     
  public class CheckTimeListener implements ActionListener{
      public void actionPerformed(ActionEvent e){
-         DeliveryDA deDA = new DeliveryDA();
+        CheckDeliveryTime cdTime = new CheckDeliveryTime();
+        cdTime.setVisible(true);
+        cdTime.setSize(500, 500);
+        cdTime.setLocationRelativeTo(null);
+          
+          
+         
          
          
      }
