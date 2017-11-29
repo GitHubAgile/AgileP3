@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DA;
+package da;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -19,13 +19,12 @@ import javax.swing.JOptionPane;
  * @author BryanLee
  */
 public class CreateFoodDA {
-    private String host = "jdbc:derby://localhost:1527/RESTAURANTDB";
+    private String host = "jdbc:derby://localhost:1527/Agile";
     private String user = "nbuser";
     private String password = "nbuser";
     private String tableName = "MENU";
     private Connection conn;
     private PreparedStatement stmt;
-    private String sqlQueryStr = "SELECT * from " + tableName;
     
     public CreateFoodDA() {
         createConnection();

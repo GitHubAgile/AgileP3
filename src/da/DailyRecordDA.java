@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
 import javax.swing.*;
 
 public class DailyRecordDA {
-    private String host = "jdbc:derby://localhost:1527/RESTAURANTDB";
+    private String host = "jdbc:derby://localhost:1527/Agile";
     private String user = "nbuser";
     private String password = "nbuser";
     private String tableName ="DailyRecord";
@@ -138,9 +138,6 @@ public class DailyRecordDA {
         }
      }
      
-    public static void main(String args[]){
-        
-    }
-    
+   
     
 }

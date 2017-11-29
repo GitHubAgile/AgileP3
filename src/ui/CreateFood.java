@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import DA.CreateFoodDA;
+import da.CreateFoodDA;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

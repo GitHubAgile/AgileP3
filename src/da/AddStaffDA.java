@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
  * @author user
  */
 public class AddStaffDA {
-    private String host = "jdbc:derby://localhost:1527/RESTAURANTDB";
+    private String host = "jdbc:derby://localhost:1527/Agile";
     private String user = "nbuser";
     private String password = "nbuser";
     private String tableName = "STAFF";
