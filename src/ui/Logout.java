@@ -6,6 +6,7 @@
 package ui;
 
 import da.DailyRecordDA;
+import da.DeliveryDA;
 import domain.DailyRecord;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,14 +22,16 @@ import javax.swing.JPanel;
  */
 class Logout extends JFrame{
     private JButton jbtLogout = new JButton("Check Out");
+    private JButton jbtCheckTime = new JButton("Check Duty Time");
     
     private JPanel jp1 = new JPanel();
     
     public Logout(){
+        jp1.add(jbtCheckTime);
         jp1.add(jbtLogout);
         add(jp1);
         jbtLogout.addActionListener(new ButtonListener());
-        
+        jbtCheckTime.addActionListener(new CheckTimeListener());
     }
     
  public class ButtonListener implements ActionListener{
@@ -52,6 +55,19 @@ class Logout extends JFrame{
      
 }
     
+ public class CheckTimeListener implements ActionListener{
+     public void actionPerformed(ActionEvent e){
+        CheckDeliveryTime cdTime = new CheckDeliveryTime();
+        cdTime.setVisible(true);
+        cdTime.setSize(500, 500);
+        cdTime.setLocationRelativeTo(null);
+          
+          
+         
+         
+         
+     }
+ }
     
     public static void main(String[] args){
     Logout lg = new Logout();

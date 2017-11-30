@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import DA.CreateFoodDA;
+import da.CreateFoodDA;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -33,6 +33,7 @@ public class CreateFood extends javax.swing.JFrame {
         CreateFoodDA cfda = new CreateFoodDA();
         ResultSet rs = cfda.generateFoodID("1001");
         int newfoodid = 1001;
+        boolean gan = true;
         try{
         while(rs.next()){
             newfoodid++;
