@@ -32,7 +32,7 @@ public class CheckDeliveryTime extends JFrame{
     //JTable
     int row = 0, column = 0;
     JTable listTable;
-    String[] columnNames = {"Delivery Date", "Delivery Time", "Order ID", "Customer Name", "Customer Address", "Customer Contact"};
+    String[] columnNames = {"Date", "Time", "Order ID", "Name", "Address", "Contact No"};
     Object[][] data = {};
     DefaultTableModel listTableModel;
     
@@ -58,7 +58,7 @@ public class CheckDeliveryTime extends JFrame{
                  jpl.remove(listTable);
              }
             listTableModel = new DefaultTableModel(data, columnNames);
-            listTableModel.addRow(new Object[]{"Delivery Date", "Delivery Time", "Order ID", "Customer Name", "Customer Address", "Customer Contact"});
+            listTableModel.addRow(new Object[]{"Date", "Time", "Order ID", "Name", "Address", "Contact No"});
            DMLogin dm = new DMLogin();
             DeliveryDA deliveryDA = new DeliveryDA();
         try {
