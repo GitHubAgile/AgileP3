@@ -144,7 +144,6 @@ UpdateStaffDA da=new UpdateStaffDA();
         jlbPosition = new javax.swing.JLabel();
         jlbStatus = new javax.swing.JLabel();
         jlbID = new javax.swing.JLabel();
-        jtfPassword = new javax.swing.JTextField();
         jtfName = new javax.swing.JTextField();
         jtfPhone = new javax.swing.JTextField();
         jtfEmail = new javax.swing.JTextField();
@@ -153,6 +152,7 @@ UpdateStaffDA da=new UpdateStaffDA();
         jlbTitle = new javax.swing.JLabel();
         jbtSave = new javax.swing.JButton();
         jtfID = new javax.swing.JTextField();
+        jtfPassword = new javax.swing.JPasswordField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -187,13 +187,15 @@ UpdateStaffDA da=new UpdateStaffDA();
         ddlPosition.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Staff", "Deliveryman", "Manager" }));
         ddlPosition.setToolTipText("");
 
-        ddlStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AVAILABLE", "DELIVERING", "PENDING", "RETIRED" }));
+        ddlStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Work", "Vacation", "Retired", "Resigned" }));
 
         jlbTitle.setText("Staff Details");
 
         jbtSave.setText("Save");
 
         jtfID.setEditable(false);
+
+        jtfPassword.setText("jPasswordField1");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -216,8 +218,8 @@ UpdateStaffDA da=new UpdateStaffDA();
                     .addComponent(jtfEmail, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jtfPhone, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jtfName, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtfPassword, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtfID))
+                    .addComponent(jtfID)
+                    .addComponent(jtfPassword))
                 .addGap(26, 26, 26))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(126, 126, 126)
@@ -364,7 +366,7 @@ UpdateStaffDA da=new UpdateStaffDA();
     private javax.swing.JTextField jtfEmail;
     private javax.swing.JTextField jtfID;
     private javax.swing.JTextField jtfName;
-    private javax.swing.JTextField jtfPassword;
+    private javax.swing.JPasswordField jtfPassword;
     private javax.swing.JTextField jtfPhone;
     // End of variables declaration//GEN-END:variables
 }

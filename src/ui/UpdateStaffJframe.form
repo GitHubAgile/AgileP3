@@ -71,8 +71,8 @@
                       <Component id="jtfEmail" alignment="0" max="32767" attributes="0"/>
                       <Component id="jtfPhone" alignment="0" max="32767" attributes="0"/>
                       <Component id="jtfName" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jtfPassword" alignment="0" max="32767" attributes="0"/>
                       <Component id="jtfID" max="32767" attributes="0"/>
+                      <Component id="jtfPassword" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               </Group>
@@ -178,8 +178,6 @@
             <Property name="text" type="java.lang.String" value="ID :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jtfPassword">
-        </Component>
         <Component class="javax.swing.JTextField" name="jtfName">
         </Component>
         <Component class="javax.swing.JTextField" name="jtfPhone">
@@ -205,10 +203,10 @@
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
-                <StringItem index="0" value="AVAILABLE"/>
-                <StringItem index="1" value="DELIVERING"/>
-                <StringItem index="2" value="PENDING"/>
-                <StringItem index="3" value="RETIRED"/>
+                <StringItem index="0" value="Work"/>
+                <StringItem index="1" value="Vacation"/>
+                <StringItem index="2" value="Retired"/>
+                <StringItem index="3" value="Resigned"/>
               </StringArray>
             </Property>
           </Properties>
@@ -232,6 +230,11 @@
         <Component class="javax.swing.JTextField" name="jtfID">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="jtfPassword">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jPasswordField1"/>
           </Properties>
         </Component>
       </SubComponents>
