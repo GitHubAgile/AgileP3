@@ -33,10 +33,20 @@ public class displayRestaurantOptions extends javax.swing.JFrame {
     }
 
     public void populateJTable() {
+        ResultSet rs = null;
         registerAffiliatesDA ra = new registerAffiliatesDA();
+       try{
+           rs = ra.displayRestaurant();
+       if(!rs.next()){
+       JOptionPane.showMessageDialog(null, "No records available!");
+       }
+           
+       }catch(Exception ex){}
         ArrayList<restaurant> list = ra.BindTable();
         String[] columnName = {"Restaurant ID", "Restaurant Name", "Restaurant Type", "Contact Number", "Image"};
         Object[][] rows = new Object[list.size()][6];
+  
+         
         for (int i = 0; i < list.size(); i++) {
             rows[i][0] = list.get(i).getRestaurantID();
             rows[i][1] = list.get(i).getCompanyName();
@@ -59,6 +69,7 @@ public class displayRestaurantOptions extends javax.swing.JFrame {
         jTable1.setModel(model);
         jTable1.setRowHeight(120);
         jTable1.getColumnModel().getColumn(4).setPreferredWidth(150);
+         
     }
 
     /**

@@ -83,17 +83,21 @@ public class DailyRecordDA {
         }
     }
 
-     public int getLastID(){
-      String selectStr = "Select max(recordId) from " + tableName;
+     public String getLastID(){
+      String selectStr = "Select * from " + tableName;
       ResultSet rs;
-      int id = 0;
+      String id = null;
       try{
-      rs = stmt.executeQuery(selectStr);
-      id = rs.getInt(1);
+          stmt = conn.prepareStatement(selectStr);
+          rs = stmt.executeQuery();
+      
+       while (rs.next()){
+           id = rs.getString(1);
+       }
 
       }catch(Exception ex){
-          JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
-
+          //JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+          JOptionPane.showMessageDialog(null, ex.getMessage());
       }
       return id;
      }
@@ -121,6 +125,7 @@ public class DailyRecordDA {
          }
          return dR;
      }
+     
      
      public void updateLogoutTime(String recordID){
         String updateStr = "update " + tableName + " set checkouttime = ? where recordID = ?";
