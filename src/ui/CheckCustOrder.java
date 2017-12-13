@@ -31,7 +31,7 @@ public class CheckCustOrder extends javax.swing.JFrame {
         mode.setColumnIdentifiers(tableColumnsName);
         mode.setRowCount(0);
         ResultSet rs = null;
-        rs = getCustOrderForOneRest.getOrder("mcd");
+        rs = getCustOrderForOneRest.getOrder("kfc");
         
         try {                   
                 ResultSetMetaData rsmd = rs.getMetaData();
