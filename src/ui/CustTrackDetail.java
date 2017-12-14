@@ -15,8 +15,6 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import da.GetCustOrderForOneCust;
 import java.util.Calendar;
-import java.util.Date;
-import java.text.SimpleDateFormat;
 
 public class CustTrackDetail extends javax.swing.JFrame {
 
