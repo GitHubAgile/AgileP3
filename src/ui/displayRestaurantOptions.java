@@ -123,8 +123,7 @@ public class displayRestaurantOptions extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-       // JOptionPane.showMessageDialog(null, "You Have Clicked " + jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
-        new placeOrder().setVisible(true);
+        JOptionPane.showMessageDialog(null, "You Have Clicked " + jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
 
     }//GEN-LAST:event_jTable1MouseClicked
 

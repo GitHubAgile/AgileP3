@@ -7,7 +7,7 @@ package ui;
 
 import java.sql.ResultSet;
 import javax.swing.table.DefaultTableModel;
-import da.GetCustOrderForOneRest;
+import da.GetCustOrderForOneCust;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -15,23 +15,21 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
-/**
- *
- * @author Asus
- */
-public class CheckCustOrder extends javax.swing.JFrame {
-    GetCustOrderForOneRest getCustOrderForOneRest = new GetCustOrderForOneRest();
 
-    public CheckCustOrder() throws SQLException {
+public class CustOrderView extends javax.swing.JFrame {
+
+    GetCustOrderForOneCust gcofc = new GetCustOrderForOneCust(
+    );
+    public CustOrderView() {
         initComponents();
-        String[] tableColumnsName = {"Order ID", "Order Date", "Order Time", "Total Food Quantity", "Customer ID"};
+        String[] tableColumnsName = {"Order ID", "Order Date", "Order Time", "Delivery Status", "Restaurant Name"};
         DefaultTableModel mode = (DefaultTableModel) jtbOrder.getModel();
         jtbOrder.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         jtbOrder.setRowSelectionAllowed(true);
         mode.setColumnIdentifiers(tableColumnsName);
         mode.setRowCount(0);
         ResultSet rs = null;
-        rs = getCustOrderForOneRest.getOrder("kfc");
+        rs = gcofc.getOverviewOrder("C1001");
         
         try {                   
                 ResultSetMetaData rsmd = rs.getMetaData();
@@ -50,8 +48,6 @@ public class CheckCustOrder extends javax.swing.JFrame {
             }
     }
 
-
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,7 +59,7 @@ public class CheckCustOrder extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jtbOrder = new javax.swing.JTable();
-        jbtSelect = new javax.swing.JButton();
+        jbtCheckStatus = new javax.swing.JButton();
         jbtExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -79,14 +75,12 @@ public class CheckCustOrder extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jtbOrder.setFocusable(false);
-        jtbOrder.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jtbOrder);
 
-        jbtSelect.setText("Select");
-        jbtSelect.addActionListener(new java.awt.event.ActionListener() {
+        jbtCheckStatus.setText("Check Status");
+        jbtCheckStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtSelectActionPerformed(evt);
+                jbtCheckStatusActionPerformed(evt);
             }
         });
 
@@ -102,40 +96,41 @@ public class CheckCustOrder extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
-                .addGap(32, 32, 32)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jbtSelect, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
+                    .addComponent(jbtCheckStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
                     .addComponent(jbtExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(38, 38, 38))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addGap(79, 79, 79))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jbtSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(96, 96, 96)
-                .addComponent(jbtExit, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(197, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jbtCheckStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49)
+                        .addComponent(jbtExit, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbtSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtSelectActionPerformed
+    private void jbtCheckStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtCheckStatusActionPerformed
         if(jtbOrder.getSelectedRow() <= -1){
             JOptionPane.showMessageDialog(null, "No Order Selected", "ERROR", JOptionPane.ERROR_MESSAGE);
         }else{
             int selectedrow = jtbOrder.getSelectedRow();
             String OrderIDtoPass = jtbOrder.getValueAt(selectedrow, 0)+"";
-            new OrderDetail(OrderIDtoPass).setVisible(true);
+            String restname = jtbOrder.getValueAt(selectedrow, 4)+"";
+            new CustTrackDetail(OrderIDtoPass, restname).setVisible(true);
             dispose();
         }
-    }//GEN-LAST:event_jbtSelectActionPerformed
+    }//GEN-LAST:event_jbtCheckStatusActionPerformed
 
     private void jbtExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtExitActionPerformed
         dispose();
@@ -158,32 +153,28 @@ public class CheckCustOrder extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CheckCustOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustOrderView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CheckCustOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustOrderView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CheckCustOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustOrderView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CheckCustOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustOrderView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    new CheckCustOrder().setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(CheckCustOrder.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                new CustOrderView().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbtCheckStatus;
     private javax.swing.JButton jbtExit;
-    private javax.swing.JButton jbtSelect;
     private javax.swing.JTable jtbOrder;
     // End of variables declaration//GEN-END:variables
 }
