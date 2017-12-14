@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -14,6 +15,8 @@ public class MenuDA {
     private String user = "nbuser";
     private String password = "nbuser";
     private String tableName ="Menu";
+    private String sqlInsertStr = "INSERT INTO " + tableName + " VALUES(? ,?, ?, ?, ?, ?,?,?)";
+   
     private Connection conn;
     private PreparedStatement stmt;
     private ResultSet rs = null;
@@ -67,8 +70,8 @@ public class MenuDA {
             rs = stmt.executeQuery();
             
             while (rs.next()) {
-                menu = new Menu(rs.getString(1),rs.getString(2), rs.getString(3), rs.getString(4),
-                        rs.getDouble(5), rs.getString(6));
+                menu = new Menu(rs.getString(1),rs.getBytes(2), rs.getString(3), rs.getString(4),
+                        rs.getString(5), rs.getString(6));
                 resultList.add(menu);
            
             }
@@ -78,4 +81,29 @@ public class MenuDA {
         return resultList;
         
     }
+      public ArrayList<Menu> BindTable(){
+        
+   ArrayList<Menu> list = new ArrayList<Menu>();
+  
+   Statement st;
+
+   
+   try {
+   st = conn.createStatement();
+   rs = st.executeQuery("SELECT * FROM MENU");
+   
+   Menu p;
+   while(rs.next()){
+   p = new Menu(
+   rs.getString("ITEMID"),rs.getBytes("IMAGE"),rs.getString("ITEMNAME"),rs.getString("DESCRIPTION"),rs.getString("PRICE"),rs.getString("RESTID")
+   );
+   list.add(p);
+   }
+   
+   } catch (Exception ex) {
+   
+   }
+   return list;
+   }
+
 }

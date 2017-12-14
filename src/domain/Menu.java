@@ -1,38 +1,49 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package domain;
 
+/**
+ *
+ * @author AaronLee
+ */
 public class Menu {
+
     private String itemID;
-    private String image;
+    private byte[] image;
     private String itemName;
     private String description;
-    private double price;
+    private String price;
     private String restID;
 
     public Menu() {
     }
 
-    public Menu(String itemID, String image, String itemName, String description, double price, String restID) {
+    public Menu(String itemID, byte[] image, String itemName, String description, String price, String restID) {
         this.itemID = itemID;
         this.image = image;
         this.itemName = itemName;
         this.description = description;
         this.price = price;
         this.restID = restID;
+
     }
 
     public String getItemID() {
         return itemID;
     }
 
-    public void setItemID(String itemID) {
+    public void setitemID(String itemID) {
         this.itemID = itemID;
     }
 
-    public String getImage() {
+    public byte[] getimage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setOrderDate(byte[] image) {
         this.image = image;
     }
 
@@ -52,11 +63,12 @@ public class Menu {
         this.description = description;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
+
         this.price = price;
     }
 
@@ -68,11 +80,4 @@ public class Menu {
         this.restID = restID;
     }
 
-    @Override
-    public String toString() {
-        return "Menu{" + "itemID=" + itemID + ", image=" + image + ", itemName=" + itemName + ", description=" + description + ", price=" + price + ", restID=" + restID + '}';
-    }
-    
-    
-    
 }
