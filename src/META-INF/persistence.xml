@@ -10,4 +10,14 @@
       <property name="javax.persistence.jdbc.password" value="nbuser"/>
     </properties>
   </persistence-unit>
+  <persistence-unit name="AgilePU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>ui.Restaurant</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/Agile"/>
+      <property name="javax.persistence.jdbc.user" value="nbuser"/>
+      <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
+      <property name="javax.persistence.jdbc.password" value="nbuser"/>
+    </properties>
+  </persistence-unit>
 </persistence>

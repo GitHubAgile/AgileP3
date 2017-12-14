@@ -42,7 +42,7 @@ public class StaffDA {
         try {
             stmt = conn.prepareStatement(queryStr);
             stmt.setString(1, id);
-            stmt.setString(2, password);
+                stmt.setString(2, password);
             ResultSet rs = stmt.executeQuery();
             
             if (rs.next()) {
